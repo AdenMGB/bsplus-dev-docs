@@ -149,14 +149,6 @@ export default defineNuxtConfig({
         return false;
       },
     },
-    esbuild: {
-      options: {
-        external: [
-          // Exclude native bindings from esbuild
-          /\.node$/,
-        ],
-      },
-    },
   },
   compatibilityDate: '2025-05-13',
 });
