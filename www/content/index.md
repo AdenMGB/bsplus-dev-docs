@@ -35,6 +35,10 @@ Complete documentation for BetterSEQTA projects including DesQTA. :br User guide
 - [User Guide](/betterseqta/desqta/user-guide/getting-started) - Learn how to use DesQTA
 - [Developer Guide](/betterseqta/desqta/developer-guide/introduction) - Contribute to DesQTA
 
+### BetterSEQTA-Plus
+- [User Guide](/betterseqta/betterseqta-plus/user-guide/getting-started) - Learn how to use BetterSEQTA-Plus
+- [Developer Guide](/betterseqta/betterseqta-plus/developer-guide/introduction) - Contribute to BetterSEQTA-Plus
+
 ## About BetterSEQTA
 
 BetterSEQTA is a collection of projects aimed at enhancing the SEQTA Learn experience with modern tools, improved interfaces, and additional features.

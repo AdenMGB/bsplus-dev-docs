@@ -2,7 +2,7 @@ export default defineAppConfig({
   shadcnDocs: {
     site: {
       name: 'BetterSEQTA Docs',
-      description: 'Complete documentation for BetterSEQTA projects including DesQTA. User guides, developer documentation, and more.',
+      description: 'Complete documentation for BetterSEQTA projects including DesQTA and BetterSEQTA-Plus. User guides, developer documentation, and more.',
       ogImage: '/hero.png',
       ogImageComponent: 'ShadcnDocs',
       ogImageColor: 'light',
@@ -50,6 +50,16 @@ export default defineAppConfig({
           title: 'DesQTA Developer Guide',
           to: '/betterseqta/desqta/developer-guide/introduction',
           description: 'Contribute to DesQTA development',
+          icon: 'lucide:code',
+        }, {
+          title: 'BetterSEQTA-Plus User Guide',
+          to: '/betterseqta/betterseqta-plus/user-guide/getting-started',
+          description: 'Learn how to use BetterSEQTA-Plus',
+          icon: 'lucide:book-open',
+        }, {
+          title: 'BetterSEQTA-Plus Developer Guide',
+          to: '/betterseqta/betterseqta-plus/developer-guide/introduction',
+          description: 'Contribute to BetterSEQTA-Plus development',
           icon: 'lucide:code',
         }],
       }],
