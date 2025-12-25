@@ -123,10 +123,6 @@ export default defineNuxtConfig({
     minify: true,
     sourceMap: false,
     compressPublicAssets: true,
-    // Ensure output directory is correct for Cloudflare Pages
-    output: {
-      publicDir: 'www/.output/public',
-    },
     rollupConfig: {
       // Optimize memory usage during build
       treeshake: {
