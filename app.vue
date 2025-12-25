@@ -11,12 +11,12 @@
       class="flex-1 items-start px-4 md:grid md:gap-6 md:px-8 lg:gap-10"
       :class="[
         config.main.padded && 'container',
-        (page.aside ?? true) && 'md:grid-cols-[220px_minmax(0,1fr)] lg:grid-cols-[240px_minmax(0,1fr)]',
+        (page.aside ?? true) && 'md:grid-cols-[320px_minmax(0,1fr)]',
       ]"
     >
       <aside
         v-if="page.aside ?? true"
-        class="fixed z-30 -ml-2 hidden w-full shrink-0 overflow-y-auto top-[102px] md:sticky md:block"
+        class="fixed z-30 hidden shrink-0 overflow-x-hidden overflow-y-auto top-[102px] md:sticky md:block"
         :class="[
           (config.aside.useLevel && config.aside.levelStyle === 'aside') ? 'h-[calc(100vh-3.5rem)] md:top-[61px]' : 'h-[calc(100vh-6rem)] md:top-[101px]',
         ]"
