@@ -1,0 +1,6 @@
+# Cloudflare Pages redirects for Nuxt static site
+# Fallback for any routes that weren't pre-rendered (shouldn't happen, but safety net)
+# The 200 status code means "rewrite" not "redirect" - URL stays the same
+# This ensures client-side routing works if a route wasn't pre-rendered
+/*    /index.html   200
+

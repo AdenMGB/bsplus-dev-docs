@@ -45,7 +45,7 @@
     "typecheck": "nuxt prepare && nuxt typecheck",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "deploy": "pnpm generate && pnpm wrangler pages deploy"
+    "cf:deploy": "pnpm generate && pnpm wrangler pages deploy"
   },
   "dependencies": {
     "@iconify-json/lucide": "^1.2.81",
@@ -87,7 +87,6 @@
     "taze": "^19.9.2",
     "vue": "^3.5.25",
     "vue-router": "^4.6.4",
-    "vue-tsc": "^3.1.8",
-    "wrangler": "^3.109.0"
+    "vue-tsc": "^3.1.8"
   }
 }
