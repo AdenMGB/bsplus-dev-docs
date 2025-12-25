@@ -121,6 +121,88 @@ export default defineNuxtConfig({
     rollupConfig: {
       plugins: [
         {
+          name: 'handle-node-builtins',
+          resolveId(id, importer) {
+            // Handle Node.js built-in modules FIRST (before other plugins)
+            // Cloudflare Pages doesn't support these, so we provide polyfills
+            if (id.startsWith('node:')) {
+              const moduleName = id.replace('node:', '');
+              return { id: `\0virtual:node-${moduleName}`, external: false };
+            }
+            return null;
+          },
+          load(id) {
+            if (id.startsWith('\0virtual:node-')) {
+              const moduleName = id.replace('\0virtual:node-', '');
+              // Provide polyfills for common Node.js built-ins used by Nitro
+              if (moduleName === 'buffer') {
+                return `
+                  // Polyfill for node:buffer in Cloudflare Pages
+                  export const Buffer = globalThis.Buffer || class Buffer {
+                    static from() { return new Uint8Array(); }
+                    static alloc() { return new Uint8Array(); }
+                    static isBuffer() { return false; }
+                  };
+                  export default Buffer;
+                `;
+              }
+              if (moduleName === 'util') {
+                return `
+                  // Polyfill for node:util in Cloudflare Pages
+                  export const promisify = (fn) => fn;
+                  export const inspect = (obj) => JSON.stringify(obj);
+                  export default { promisify, inspect };
+                `;
+              }
+              if (moduleName === 'async_hooks') {
+                return `
+                  // Polyfill for node:async_hooks in Cloudflare Pages
+                  // Simple AsyncLocalStorage implementation using Map
+                  class AsyncLocalStorage {
+                    constructor() {
+                      this._store = new Map();
+                    }
+                    run(store, callback) {
+                      const id = Symbol();
+                      this._store.set(id, store);
+                      try {
+                        return callback();
+                      } finally {
+                        this._store.delete(id);
+                      }
+                    }
+                    getStore() {
+                      // Return first available store (simplified for Cloudflare)
+                      for (const store of this._store.values()) {
+                        return store;
+                      }
+                      return undefined;
+                    }
+                    enterWith(store) {
+                      const id = Symbol();
+                      this._store.set(id, store);
+                    }
+                    exit(callback) {
+                      return callback();
+                    }
+                    disable() {
+                      this._store.clear();
+                    }
+                    enable() {
+                      // No-op
+                    }
+                  }
+                  export { AsyncLocalStorage };
+                  export default { AsyncLocalStorage };
+                `;
+              }
+              // Default: empty export for other Node.js built-ins
+              return 'export default {};';
+            }
+            return null;
+          },
+        },
+        {
           name: 'exclude-native-bindings',
           resolveId(id, importer) {
             // Handle relative imports of .node files from @resvg/resvg-js
@@ -145,6 +227,10 @@ export default defineNuxtConfig({
         // Exclude all .node files (native bindings) from bundling
         if (id.includes('.node')) {
           return true;
+        }
+        // Mark node: built-ins as external (handled by plugin above)
+        if (id.startsWith('node:')) {
+          return false; // Let the plugin handle it
         }
         return false;
       },
