@@ -6,6 +6,9 @@ const currentDir = dirname(fileURLToPath(import.meta.url));
 
 export default defineNuxtConfig({
   devtools: { enabled: true },
+  site: {
+    url: 'https://docs.betterseqta.org',
+  },
   modules: [
     'shadcn-nuxt',
     '@vueuse/nuxt',
@@ -17,6 +20,7 @@ export default defineNuxtConfig({
     '@nuxt/scripts',
     '@nuxtjs/i18n',
     '@nuxt/fonts',
+    '@nuxtjs/sitemap',
   ],
   shadcn: {
     prefix: 'Ui',
