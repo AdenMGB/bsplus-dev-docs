@@ -9,6 +9,10 @@ export default defineNuxtConfig({
   site: {
     url: 'https://docs.betterseqta.org',
   },
+  sitemap: {
+    strictNuxtContentPaths: true,
+    exclude: ['/api/**'],
+  },
   modules: [
     'shadcn-nuxt',
     '@vueuse/nuxt',
@@ -67,6 +71,8 @@ export default defineNuxtConfig({
         'prevNext',
         'breadcrumb',
         'fullpage',
+        'keywords',
+        'description',
       ],
     },
     experimental: {

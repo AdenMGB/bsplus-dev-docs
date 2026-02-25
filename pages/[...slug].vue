@@ -85,12 +85,9 @@ const appConfig = useAppConfig();
 
 const isDev = import.meta.dev;
 
-useSeoMeta({
-  title: `${page.value?.title ?? '404'} - ${config.value.site.name}`,
-  ogTitle: page.value?.title,
+useDynamicSeo({
+  title: page.value?.title ?? '404',
   description: page.value?.description,
-  ogDescription: page.value?.description,
-  twitterCard: 'summary_large_image',
 });
 
 defineOgImageComponent(config.value.site.ogImageComponent, {

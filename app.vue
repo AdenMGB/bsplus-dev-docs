@@ -51,6 +51,7 @@ useSeoMeta({
 });
 
 useHead({
+  titleTemplate: (title) => title || 'BetterSEQTA Docs - DesQTA, BetterSEQTA-Plus Documentation',
   bodyAttrs: {
     class: themeClass.value,
     style: `--radius: ${radius.value}rem;`,

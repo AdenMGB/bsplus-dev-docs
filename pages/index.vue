@@ -16,12 +16,9 @@ const { page } = useContent();
 const config = useConfig();
 const appConfig = useAppConfig();
 
-useSeoMeta({
-  title: `${page.value?.title ?? '404'} - ${config.value.site.name}`,
-  ogTitle: page.value?.title,
-  description: page.value?.description,
-  ogDescription: page.value?.description,
-  ogImage: config.value.site.ogImage,
-  twitterCard: 'summary_large_image',
+useDynamicSeo({
+  title: page.value?.title ?? 'Home',
+  description: page.value?.description ?? config.value.site.description,
+  image: config.value.site.ogImage,
 });
 </script>
